@@ -217,11 +217,10 @@ namespace uWebshop.API
 
 				if (wishGuid != default(Guid) || wishGuid != Guid.Empty)
 				{
-					var wishlist = Orders.GetOrder(wishGuid);
-
+					var wishlist = OrderHelper.GetOrder(wishGuid);
 					if (wishlist != null && wishlist.Status == OrderStatus.Wishlist)
 					{
-						return (IWishlist)wishlist;
+						return new BasketOrderInfoAdaptor(wishlist);
 					}
 				}
 			}
